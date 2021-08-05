@@ -61,6 +61,20 @@ registerRoute(
   })
 );
 
+self.addEventListener('install', (event) => {
+  console.log('SW INSTALL');
+
+  const asyncInstall = new Promise(function (resolve) {
+    console.log("Waiting install to finish...");
+    setTimeout(resolve, 5000);
+  })
+  event.waitUntil(asyncInstall);
+})
+
+self.addEventListener('activate', (event) => {
+  console.log('SW ACTIVATE')
+})
+
 // This allows the web app to trigger skipWaiting via
 // registration.waiting.postMessage({type: 'SKIP_WAITING'})
 self.addEventListener('message', (event) => {
