@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Header() {
   return (
     <header className="absolute w-full z-50 px-4">
@@ -16,24 +18,36 @@ function Header() {
               id="menu"
             >
               <li className="mx-3 py-6 md:py-0">
-                <a href="/" className="text-black md:text-white hover:underline">
+                <a
+                  href="/"
+                  className="text-black md:text-white hover:underline"
+                >
                   Showcase
                 </a>
               </li>
               <li className="mx-3 py-6 md:py-0">
-                <a href="/" className="text-black md:text-white hover:underline">
+                <a
+                  href="/"
+                  className="text-black md:text-white hover:underline"
+                >
                   Catalog
                 </a>
               </li>
               <li className="mx-3 py-6 md:py-0">
-                <a href="/" className="text-black md:text-white hover:underline">
+                <a
+                  href="/"
+                  className="text-black md:text-white hover:underline"
+                >
                   Delivery
                 </a>
               </li>
               <li className="mx-3 py-6 md:py-0">
-                <a href="/" className="text-black md:text-white hover:underline">
-                  Rewards
-                </a>
+                <Link
+                  to="/profile"
+                  className="text-black md:text-white hover:underline"
+                >
+                  Profile
+                </Link>
               </li>
             </ul>
           </div>
