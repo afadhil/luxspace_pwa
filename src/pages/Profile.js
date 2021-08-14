@@ -1,5 +1,37 @@
 import { Link } from "react-router-dom";
 
+// copied from https://github.com/GoogleChromeLabs/web-push-codelab/blob/master/app/scripts/main.js
+// or open github > GoogleChromeLabs/web-push-codelabs - app/main.js
+function urlB64ToUint8Array(base64String) {
+  const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
+  const base64 = (base64String + padding)
+    .replace(/\-/g, "+")
+    .replace(/_/g, "/");
+
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+
+  for (let i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+  return outputArray;
+}
+
+async function subscribe() {
+  const key =
+    "BF0zu7ACgTkmPPcNL-_BzupjoMHIIRGioupLGBcxPhDTiRbv-a6oU8kiv-qzPLB511in25WEavmY00Tr_JZjz0M";
+
+  try {
+    const sub = await global.registration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: urlB64ToUint8Array(key),
+    });
+    console.log("Subscribe!");
+  } catch (error) {
+    console.error("Cannot subscribe.");
+  }
+}
+
 function Profile() {
   return (
     <>
@@ -141,7 +173,10 @@ function Profile() {
           </div>
           <ul className="max-w-full md:max-w-lg mx-auto">
             <li className="pb-3 mb-2 flex items-center justify-between w-full border-b border-gray-100">
-              <span>Subscribe to Notification</span>
+              <span>
+                Subscribe to Notification{" "}
+                <strong className="text-red-500">(not used)</strong>
+              </span>
               <span>
                 <label
                   htmlFor="subscribe"
@@ -154,6 +189,15 @@ function Profile() {
                   />
                 </label>
               </span>
+            </li>
+            <li className="pb-3 mb-2 flex items-center justify-between w-full border-b border-gray-100">
+              <span>Subscribe to Notification</span>
+              <button
+                className="hover:underline appearance-none"
+                onClick={subscribe}
+              >
+                Subscribe
+              </button>
             </li>
             <li className="pb-3 mb-2 flex items-center justify-between w-full border-b border-gray-100">
               <span>Test Notification</span>
