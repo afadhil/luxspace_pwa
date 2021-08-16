@@ -1,7 +1,11 @@
-import Header from '../components/Header'
-import Breadcrumb from '../components/Breadcrumb';
+import Header from "../components/Header";
+import Breadcrumb from "../components/Breadcrumb";
+import { priceFormat } from "../utils/formatter";
 
-function Details() {
+function Details({ location }) {
+  const { name, price, description, image1, image2, image3, image4, image5 } =
+    location.state;
+
   return (
     <>
       <Header mode="dark" />
@@ -9,67 +13,52 @@ function Details() {
       <section className="container mx-auto">
         <div className="flex flex-wrap my-4 md:my-12">
           <div className="w-full md:hidden px-4">
-            <h2 className="text-5xl font-semibold">Chair Thatty</h2>
-            <span className="text-xl">IDR 12.000.000</span>
+            <h2 className="text-5xl font-semibold">{name}</h2>
+            <span className="text-xl">{priceFormat(price)}</span>
           </div>
           <div className="flex-1">
             <div className="slider">
               <div className="thumbnail">
                 <div className="px-2">
-                  <div
-                    className="item selected"
-                    data-img="./images/content/showcase-1.front.jpg"
-                  >
+                  <div className="item selected" data-img={image1}>
                     <img
-                      src="./images/content/showcase-1.front.jpg"
+                      src={image1}
                       alt="front"
                       className="object-cover w-full h-full rounded-lg"
                     />
                   </div>
                 </div>
                 <div className="px-2">
-                  <div
-                    className="item"
-                    data-img="./images/content/showcase-1.back.jpg"
-                  >
+                  <div className="item" data-img={image2}>
                     <img
-                      src="./images/content/showcase-1.back.jpg"
+                      src={image2}
                       alt="back"
                       className="object-cover w-full h-full rounded-lg"
                     />
                   </div>
                 </div>
                 <div className="px-2">
-                  <div
-                    className="item"
-                    data-img="./images/content/showcase-1.rear.jpg"
-                  >
+                  <div className="item" data-img={image3}>
                     <img
-                      src="./images/content/showcase-1.rear.jpg"
+                      src={image3}
                       alt="rear"
                       className="object-cover w-full h-full rounded-lg"
                     />
                   </div>
                 </div>
                 <div className="px-2">
-                  <div
-                    className="item"
-                    data-img="./images/content/showcase-1.side.jpg"
-                  >
+                  <div className="item" data-img={image4}>
                     <img
-                      src="./images/content/showcase-1.side.jpg"
+                      src={image4}
                       alt="side"
                       className="object-cover w-full h-full rounded-lg"
                     />
                   </div>
                 </div>
                 <div className="px-2">
-                  <div
-                    className="item"
-                    data-img="./images/content/showcase-1.top.jpg"
-                  >
+                  <div className="item" data-img={image5}>
                     <img
-                      src="./images/content/showcase-1.top.jpg"
+                      src={image5}
                       alt="top"
                       className="object-cover w-full h-full rounded-lg"
                     />
@@ -79,7 +68,7 @@ function Details() {
               <div className="preview">
                 <div className="item rounded-lg h-full overflow-hidden">
                   <img
-                    src="./images/content/showcase-1.front.jpg"
+                    src={image1}
                     alt="front"
                     className="object-cover w-full h-full rounded-lg"
                   />
@@ -88,8 +77,8 @@ function Details() {
             </div>
           </div>
           <div className="flex-1 px-4 md:p-6">
-            <h2 className="text-5xl font-semibold">Chair Thatty</h2>
-            <p className="text-xl">IDR 12.000.000</p>
+            <h2 className="text-5xl font-semibold">{name}</h2>
+            <p className="text-xl">{priceFormat(price)}</p>
 
             <a
               href="cart.html"
@@ -112,16 +101,7 @@ function Details() {
             <hr className="my-8" />
 
             <h6 className="text-xl font-semibold mb-4">About the product</h6>
-            <p className="text-xl leading-7 mb-6">
-              Tailored to a level of perfection synonymous with that of a Savile
-              Row suit and with understated quality in the detail, Jetty has
-              been influenced by timeless 1950s style.
-            </p>
-            <p className="text-xl leading-7">
-              Providing a subtle nod to the past, Jetty also provides a perfect
-              solution for the way we work today. A comprehensive product
-              family, Jetty features a variety of elegant chairs and sofas.
-            </p>
+            <p className="text-xl leading-7 mb-6">{description}</p>
           </div>
         </div>
       </section>
