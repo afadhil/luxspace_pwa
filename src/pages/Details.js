@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Header from "../components/Header";
 import Breadcrumb from "../components/Breadcrumb";
 import { priceFormat } from "../utils/formatter";
@@ -5,6 +6,8 @@ import { priceFormat } from "../utils/formatter";
 function Details({ location }) {
   const { name, price, description, image1, image2, image3, image4, image5 } =
     location.state;
+
+  const [currentImage, setCurrentImage] = useState(image1);
 
   return (
     <>
@@ -20,7 +23,10 @@ function Details({ location }) {
             <div className="slider">
               <div className="thumbnail">
                 <div className="px-2">
-                  <div className="item selected" data-img={image1}>
+                  <div
+                    className={`item ${currentImage === image1 && "selected"}`}
+                    onClick={() => setCurrentImage(image1)}
+                  >
                     <img
                       src={image1}
                       alt="front"
@@ -29,7 +35,10 @@ function Details({ location }) {
                   </div>
                 </div>
                 <div className="px-2">
-                  <div className="item" data-img={image2}>
+                  <div
+                    className={`item ${currentImage === image2 && "selected"}`}
+                    onClick={() => setCurrentImage(image2)}
+                  >
                     <img
                       src={image2}
                       alt="back"
@@ -38,7 +47,10 @@ function Details({ location }) {
                   </div>
                 </div>
                 <div className="px-2">
-                  <div className="item" data-img={image3}>
+                  <div
+                    className={`item ${currentImage === image3 && "selected"}`}
+                    onClick={() => setCurrentImage(image3)}
+                  >
                     <img
                       src={image3}
                       alt="rear"
@@ -47,7 +59,10 @@ function Details({ location }) {
                   </div>
                 </div>
                 <div className="px-2">
-                  <div className="item" data-img={image4}>
+                  <div
+                    className={`item ${currentImage === image4 && "selected"}`}
+                    onClick={() => setCurrentImage(image4)}
+                  >
                     <img
                       src={image4}
                       alt="side"
@@ -56,7 +71,10 @@ function Details({ location }) {
                   </div>
                 </div>
                 <div className="px-2">
-                  <div className="item" data-img={image5}>
+                  <div
+                    className={`item ${currentImage === image5 && "selected"}`}
+                    onClick={() => setCurrentImage(image5)}
+                  >
                     <img
                       src={image5}
                       alt="top"
@@ -68,7 +86,7 @@ function Details({ location }) {
               <div className="preview">
                 <div className="item rounded-lg h-full overflow-hidden">
                   <img
-                    src={image1}
+                    src={currentImage}
                     alt="front"
                     className="object-cover w-full h-full rounded-lg"
                   />
