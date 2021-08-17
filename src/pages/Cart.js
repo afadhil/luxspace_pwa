@@ -8,7 +8,7 @@ import { priceFormat } from "../utils";
 function Cart({ cart }) {
   return (
     <>
-      <Header mode="dark" />
+      <Header mode="dark" cart={cart} />
       <Breadcrumb />
       <section className="md:py-16">
         <div className="container mx-auto px-4">
@@ -48,7 +48,7 @@ function Cart({ cart }) {
 
               {cart && cart.length === 0 && (
                 <p id="cart-empty" className="text-center py-8">
-                  Ooops... Cart is empty&nbsp;
+                  Ooops... Cart is empty.{' '}
                   <Link to="/" className="underline">
                     Shop Now
                   </Link>

@@ -27,7 +27,7 @@ function Details({ cart, handleAddToCart }) {
 
   return (
     <>
-      <Header mode="dark" />
+      <Header mode="dark" cart={cart} />
       <Breadcrumb />
       <section className="container mx-auto">
         <div className="flex flex-wrap my-4 md:my-12">

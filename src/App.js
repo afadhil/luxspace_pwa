@@ -13,7 +13,7 @@ import Profile from "./pages/Profile";
 import Details from "./pages/Details";
 import Cart from "./pages/Cart";
 
-function App() {
+function App({ cart }) {
   const [items, setItems] = React.useState([]);
   const [offlineStatus, setOfflineStatus] = React.useState(!navigator.onLine);
   const [isLoading, setIsLoading] = React.useState(true);
@@ -67,7 +67,7 @@ function App() {
       ) : (
         <>
           {offlineStatus && <Offline />}
-          <Header mode="light" />
+          <Header mode="light" cart={cart} />
           <Hero />
           <Browse />
           <Arrived items={items} />
@@ -91,7 +91,9 @@ export default function Routes() {
 
   return (
     <Router>
-      <Route path="/" exact component={App} />
+      <Route path="/" exact>
+        <App cart={cart} />
+      </Route>
       <Route path="/profile" exact component={Profile} />
       <Route path="/details/:id">
         <Details handleAddToCart={handleAddToCart} cart={cart} />
