@@ -89,6 +89,14 @@ export default function Routes() {
     setCart(newCart);
   }
 
+  function handleRemoveCartItem(event, id) {
+    event.preventDefault();
+    const revisedCart = cart.filter(function (item) {
+      return item.id !== id;
+    });
+    setCart(revisedCart);
+  }
+
   return (
     <Router>
       <Route path="/" exact>
@@ -99,7 +107,7 @@ export default function Routes() {
         <Details handleAddToCart={handleAddToCart} cart={cart} />
       </Route>
       <Route path="/cart">
-        <Cart cart={cart} />
+        <Cart cart={cart} handleRemoveCartItem={handleRemoveCartItem} />
       </Route>
     </Router>
   );

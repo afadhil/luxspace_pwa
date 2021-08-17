@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { priceFormat } from "../utils";
 
-function Cart({ cart }) {
+function Cart({ cart, handleRemoveCartItem }) {
   return (
     <>
       <Header mode="dark" cart={cart} />
@@ -98,7 +98,7 @@ function Cart({ cart }) {
                       <div className="px-4 w-2/12">
                         <div className="text-center">
                           <button
-                            data-delete-item="1"
+                            onClick={(event) => handleRemoveCartItem(event, id)}
                             className="text-red-600 border-none focus:outline-none px-3 py-1"
                           >
                             X
