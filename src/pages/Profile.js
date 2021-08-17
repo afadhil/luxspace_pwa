@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function urlB64ToUint8Array(base64String) {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
   const base64 = (base64String + padding)
-    .replace(/\-/g, "+")
+    .replace(/-/g, "+")
     .replace(/_/g, "/");
 
   const rawData = window.atob(base64);
@@ -22,7 +22,7 @@ async function subscribe() {
     "BF0zu7ACgTkmPPcNL-_BzupjoMHIIRGioupLGBcxPhDTiRbv-a6oU8kiv-qzPLB511in25WEavmY00Tr_JZjz0M";
 
   try {
-    const sub = await global.registration.pushManager.subscribe({
+    await global.registration.pushManager.subscribe({
       userVisibleOnly: true,
       applicationServerKey: urlB64ToUint8Array(key),
     });
