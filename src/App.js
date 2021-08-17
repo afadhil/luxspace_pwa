@@ -11,6 +11,7 @@ import Offline from "./components/Offline";
 import Splash from "./pages/Splash";
 import Profile from "./pages/Profile";
 import Details from "./pages/Details";
+import Cart from "./pages/Cart";
 
 function App() {
   const [items, setItems] = React.useState([]);
@@ -80,11 +81,24 @@ function App() {
 }
 
 export default function Routes() {
+  const [cart, setCart] = React.useState([]);
+
+  function handleAddToCart(item) {
+    const currentIndex = cart.length;
+    const newCart = [...cart, { id: currentIndex + 1, item }];
+    setCart(newCart);
+  }
+
   return (
     <Router>
       <Route path="/" exact component={App} />
       <Route path="/profile" exact component={Profile} />
-      <Route path="/details/:id" exact component={Details} />
+      <Route path="/details/:id">
+        <Details handleAddToCart={handleAddToCart} cart={cart} />
+      </Route>
+      <Route path="/cart">
+        <Cart cart={cart} />
+      </Route>
     </Router>
   );
 }

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { priceFormat } from "../utils/formatter";
+import { priceFormat } from "../utils";
 
 function ArrivedItem({ item }) {
   return (
