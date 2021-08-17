@@ -1,11 +1,27 @@
-import { useState } from "react";
+import { useState, useLayoutEffect } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import Breadcrumb from "../components/Breadcrumb";
 import { priceFormat } from "../utils";
+import AsideMenu from "../components/AsideMenu";
+import Footer from "../components/Footer";
 
-function Details({ location, cart, handleAddToCart }) {
+function Details({ cart, handleAddToCart }) {
+  const location = useLocation();
   const { name, price, description, image1, image2, image3, image4, image5 } =
     location.state;
+
+  const history = useHistory();
+  useLayoutEffect(
+    function () {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    },
+    [history]
+  );
 
   const [currentImage, setCurrentImage] = useState(image1);
 
@@ -200,6 +216,8 @@ function Details({ location, cart, handleAddToCart }) {
           </div>
         </div>
       </section>
+      <AsideMenu />
+      <Footer />
     </>
   );
 }
